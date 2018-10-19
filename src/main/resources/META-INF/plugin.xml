@@ -1,0 +1,35 @@
+<idea-plugin>
+    <id>com.jetbrains.tlint-plugin</id>
+    <name>TLint</name>
+    <vendor email="logan@tighten.co" url="http://www.tighten.co">Tighten</vendor>
+
+    <description><![CDATA[
+    Tighten Linter.<br>
+    ]]></description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!--<depends>com.jetbrains.php</depends>-->
+    <!--<depends>com.intellij.modules.platform</depends>-->
+    <depends>com.intellij.modules.lang</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <externalAnnotator language="PHP" implementationClass="tlint.inspection.TLintExternalAnnotator" />
+        <localInspection language="PHP" groupPath="TLint"
+                         shortName="AmbiguousMethodsCallsInArrayMappingInspection" displayName="Non-optimized arrays mapping"
+                         groupName="Performance"                                   enabledByDefault="true" level="WARNING"
+                         implementationClass="tlint.inspection.TLintInspection"/>
+    </extensions>
+
+    <actions>
+        <!--<group id="TLint.Menu" text="Greeting" description="Greeting menu">-->
+            <!--<add-to-group group-id="MainMenu" anchor="last"/>-->
+            <!--<action id="TLint.Textboxes" class="TLintBundle" text="Hello" description="Says hello"/>-->
+        <!--</group>-->
+    </actions>
+    <project-components>
+        <component>
+            <implementation-class>tlint.TLintProjectComponent</implementation-class>
+        </component>
+    </project-components>
+</idea-plugin>
