@@ -29,5 +29,4 @@ version '1.1.1' <- PhpStorm 2019.1 etc...
     version '2019.1' <- Current PhpStorm
 }
 ```
-
-Now it's ready to be build.
+Now it's ready to be built and tested.
