@@ -16,7 +16,7 @@
     <extensions defaultExtensionNs="com.intellij">
         <externalAnnotator language="PHP" implementationClass="tlint.inspection.TLintExternalAnnotator" />
         <localInspection language="PHP" groupPath="TLint"
-                         shortName="AmbiguousMethodsCallsInArrayMappingInspection" displayName="Non-optimized arrays mapping"
+                         shortName="TLintInspection" displayName="TLintInspection"
                          groupName="Performance"                                   enabledByDefault="true" level="WARNING"
                          implementationClass="tlint.inspection.TLintInspection"/>
     </extensions>
