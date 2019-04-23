@@ -28,6 +28,8 @@ class TLint {
                 lint.file = gson.fromJson(json, File::class.java)
             } catch (e: JsonSyntaxException) {
                 //
+            } catch (e: java.lang.IllegalStateException) {
+                //
             }
 
             return lint
