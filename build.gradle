@@ -28,7 +28,6 @@ apply plugin: 'org.jetbrains.intellij'
 
 intellij {
     version intellijPlatformVersion
-    updateSinceUntilBuild false
 }
 
 apply plugin: 'idea'
