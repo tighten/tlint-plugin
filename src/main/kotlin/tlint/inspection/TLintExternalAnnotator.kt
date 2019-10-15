@@ -62,14 +62,19 @@ class TLintExternalAnnotator : ExternalAnnotator<ExternalLintAnnotationInput, Ex
 
         try {
             val file = collectedInfo!!.psiFile
-            val component = file.project.getComponent(TLintProjectComponent::class.java)
 
             actualCodeFile = ActualFile2.getOrCreateActualFile(T_LINT_TEMP_FILE, file, collectedInfo.fileContent)
 
             val relativeFile: String?
             relativeFile = FileUtils.makeRelative(File(file.project.basePath!!), actualCodeFile!!.actualFile)
 
-            val result = TLintRunner.lint(TLintRunner.buildSettings(file.project.basePath!!, relativeFile!!, component.lintExecutable))
+            val result = TLintRunner.lint(
+                    TLintRunner.buildSettings(
+                            file.project.basePath!!,
+                            relativeFile!!,
+                            getTlintExecutablePath(file.project.basePath!!)
+                    )
+            )
 
             actualCodeFile.deleteTemp()
 
@@ -93,10 +98,26 @@ class TLintExternalAnnotator : ExternalAnnotator<ExternalLintAnnotationInput, Ex
     }
 
     companion object {
-
         private val LOG = Logger.getInstance(TLintBundle.LOG_ID)
         private const val MESSAGE_PREFIX = "TLint: "
         private val T_LINT_TEMP_FILE = Key.create<ThreadLocalTempActualFile>("T_LINT_TEMP_FILE")
+
+        @Throws(Exception::class)
+        private fun getTlintExecutablePath(cwd: String): String {
+            val lintExecutable: File
+            val localTlintExecutable = File("$cwd/vendor/bin/tlint")
+            val globalTlintExecutable = File(System.getProperty("user.home") + "/.composer/vendor/bin/tlint")
+
+            lintExecutable = when {
+                globalTlintExecutable.exists() -> globalTlintExecutable
+                localTlintExecutable.exists() -> localTlintExecutable
+                else -> {
+                    throw Exception("No tlint executable found.")
+                }
+            }
+
+            return lintExecutable.absolutePath
+        }
 
         private fun createAnnotation(
                 holder: AnnotationHolder,
