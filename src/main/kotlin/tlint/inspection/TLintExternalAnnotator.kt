@@ -65,8 +65,12 @@ class TLintExternalAnnotator : ExternalAnnotator<ExternalLintAnnotationInput, Ex
 
             actualCodeFile = ActualFile2.getOrCreateActualFile(T_LINT_TEMP_FILE, file, collectedInfo.fileContent)
 
+            if (actualCodeFile == null) {
+                return null
+            }
+            
             val relativeFile: String?
-            relativeFile = FileUtils.makeRelative(File(file.project.basePath!!), actualCodeFile!!.actualFile)
+            relativeFile = FileUtils.makeRelative(File(file.project.basePath!!), actualCodeFile.actualFile)
 
             val result = TLintRunner.lint(
                     TLintRunner.buildSettings(
