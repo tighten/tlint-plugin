@@ -109,7 +109,7 @@ class TLintExternalAnnotator : ExternalAnnotator<ExternalLintAnnotationInput, Ex
         @Throws(Exception::class)
         private fun getTlintExecutablePath(cwd: String): String {
             val lintExecutable: File
-            val osExtension = if (this.isWindows()!!) ".bat" else ""
+            val osExtension = if (this.isWindows()) ".bat" else ""
             val localTlintExecutable = File("$cwd/vendor/bin/tlint$osExtension")
             val globalTlintExecutable = File(System.getProperty("user.home") + "/.composer/vendor/bin/tlint"+osExtension)
 
@@ -124,12 +124,8 @@ class TLintExternalAnnotator : ExternalAnnotator<ExternalLintAnnotationInput, Ex
             return lintExecutable.absolutePath
         }
 
-        private fun getOsName(): String? {
-            return System.getProperty("os.name")
-        }
-
-        private fun isWindows(): Boolean? {
-            return this.getOsName()?.startsWith("Windows")
+        private fun isWindows(): Boolean {
+            return  System.getProperty("os.name").startsWith("Windows")
         }
 
         private fun createAnnotation(
