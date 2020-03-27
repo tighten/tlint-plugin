@@ -44,7 +44,8 @@ class ThreadLocalTempActualFile internal constructor(psiFile: PsiFile) : ThreadL
     private fun createFile(): RelativeFile? {
         // try to create a temp file in temp folder
         val dir = orCreateTempDir ?: return null
-        val tempParent = File(dir, FileUtils.relativePath(project, this.file.parent)!!)
+        val path = this.file.parent ?: return null
+        val tempParent = File(dir, FileUtils.relativePath(project, path)!!)
         var file = File(tempParent, this.file.name)
         FileUtil.createParentDirs(file)
         val relativeFile = RelativeFile(file)
