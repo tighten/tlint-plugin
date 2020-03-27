@@ -4,7 +4,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.50"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.60"
     }
 }
 
@@ -16,7 +16,7 @@ repositories {
     mavenCentral()
 }
 
-ext.kotlinVersion = '1.3.50'
+ext.kotlinVersion = '1.3.60'
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
@@ -28,6 +28,7 @@ apply plugin: 'org.jetbrains.intellij'
 
 intellij {
     version intellijPlatformVersion
+    updateSinceUntilBuild false
 }
 
 apply plugin: 'idea'

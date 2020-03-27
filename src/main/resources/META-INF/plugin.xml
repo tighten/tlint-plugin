@@ -13,6 +13,12 @@
     <!--<depends>com.intellij.modules.platform</depends>-->
     <depends>com.intellij.modules.lang</depends>
 
+    <!--
+    See http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html
+    Note that the range is half-open: [since-build, until-build)
+     -->
+    <idea-version since-build="191.4212.41" until-build="193.*"/>
+
     <extensions defaultExtensionNs="com.intellij">
         <externalAnnotator language="PHP" implementationClass="tlint.inspection.TLintExternalAnnotator" />
         <localInspection language="PHP" groupPath="TLint"
