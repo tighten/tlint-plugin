@@ -4,7 +4,9 @@
     <vendor email="logan@tighten.co" url="http://www.tighten.co">Tighten</vendor>
 
     <description><![CDATA[
-    Tighten Linter.<br>
+    This plugin adds a wrapper for Tighten’s tlint linter, an opinionated code linter for Tighten flavored code conventions for Laravel and PHP.
+
+    You’ll first need to install tlint via composer using its <a href="https://github.com/tighten/tlint#install-requires-php-73">install instructions</a>. Then, add this plugin to begin seeing tlint’s code highlighting in your projects.
     ]]></description>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
