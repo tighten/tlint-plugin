@@ -22,7 +22,7 @@ id("org.jetbrains.intellij") version "1.6.0" <- paste the latest version
 ## To build a release
 
 ```
-// Click Gradle on right side of editor to find intelliji
+// Click Gradle on right side of editor to find intelliji or Choose View > Tool Windows > Gradle
 ```
 - run the `intellij` -> `buildPlugin` task, this will output `./build/distributions` directory
 
