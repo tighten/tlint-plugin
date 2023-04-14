@@ -68,9 +68,16 @@ class TLintExternalAnnotator : ExternalAnnotator<ExternalLintAnnotationInput, Ex
             if (actualCodeFile == null) {
                 return null
             }
-            
+
             val relativeFile: String?
             relativeFile = FileUtils.makeRelative(File(file.project.basePath!!), actualCodeFile.actualFile)
+
+            LOG.info("project.basePath")
+            LOG.info(file.project.basePath)
+            LOG.info("actualCodeFile.actualFile.absolutePath")
+            LOG.info(actualCodeFile.actualFile.absolutePath)
+            LOG.info("relativeFile")
+            LOG.info(relativeFile)
 
             val result = TLintRunner.lint(
                     TLintRunner.buildSettings(
@@ -112,9 +119,11 @@ class TLintExternalAnnotator : ExternalAnnotator<ExternalLintAnnotationInput, Ex
             val osExtension = if (this.isWindows()) ".bat" else ""
             val localTlintExecutable = File("$cwd/vendor/bin/tlint$osExtension")
             val globalTlintExecutable = File(System.getProperty("user.home") + "/.composer/vendor/bin/tlint"+osExtension)
+            val windowsGlobalTlintExecutable = File(System.getProperty("user.home") + "/AppData/Roaming/Composer/vendor/bin/tlint"+osExtension)
 
             lintExecutable = when {
                 globalTlintExecutable.exists() -> globalTlintExecutable
+                windowsGlobalTlintExecutable.exists() -> windowsGlobalTlintExecutable
                 localTlintExecutable.exists() -> localTlintExecutable
                 else -> {
                     throw Exception("No tlint executable found.")
